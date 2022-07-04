@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">OnJuno</string>
+    <string name="value_state">Value State</string>
+    <string name="empty_state">Empty State</string>
+</resources>
