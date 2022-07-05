@@ -2,12 +2,13 @@ package com.assignment.onjuno
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.assignment.onjuno.adapter.CryptoHoldingAdapter
 import com.assignment.onjuno.base.ViewBindingBaseActivity
+import com.assignment.onjuno.data.YourCryptoHolding
+import com.assignment.onjuno.data.valueState
 import com.assignment.onjuno.databinding.ActivityHomeBinding
 import com.assignment.onjuno.viewmodels.HomeViewModel
 import com.assignment.onjuno.viewmodels.HomeViewModelFactory
@@ -24,6 +25,7 @@ class HomeActivity : ViewBindingBaseActivity<ActivityHomeBinding>() {
     lateinit var homeViewModel: HomeViewModel
     @Inject
     lateinit var homeViewModelFactory: HomeViewModelFactory
+    private lateinit var cryptoHoldingAdapter: CryptoHoldingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,8 +50,23 @@ class HomeActivity : ViewBindingBaseActivity<ActivityHomeBinding>() {
 
     private fun observeValueState() {
         homeViewModel.valueStateLiveData.observe(this) {
-            Log.d("test", it.toString())
+            setUpValueState(it)
         }
+    }
+
+    private fun setUpValueState(valueState: valueState) {
+        binding.cryptoAccTitle.text = valueState.crypto_balance?.title
+        binding.cryptoAccSubtitle.text = valueState.crypto_balance?.subtitle
+        binding.cryptoCurrBal.text = "$"+valueState.crypto_balance?.current_bal_in_usd
+        setUpYourHoldingRecyclerView(valueState.your_crypto_holdings)
+
+    }
+
+    private fun setUpYourHoldingRecyclerView(yourCryptoHoldings: ArrayList<YourCryptoHolding?>?) {
+        cryptoHoldingAdapter = CryptoHoldingAdapter(this, HomeActivity.TYPE.VALUE_STATE)
+        binding.yourHoldingRecyclerview.adapter = cryptoHoldingAdapter
+        cryptoHoldingAdapter.setHoldingList(yourCryptoHoldings)
+        binding.yourHoldingRecyclerview.adapter?.notifyDataSetChanged()
     }
 
     companion object {

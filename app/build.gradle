@@ -64,4 +64,7 @@ dependencies {
     def coroutines_version = "1.6.3"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    //load network svg
+//    implementation 'com.github.ar-android:AndroidSvgLoader:1.0.0'
 }

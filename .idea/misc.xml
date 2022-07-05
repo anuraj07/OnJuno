@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/OnJuno/app/src/main/res/drawable/button_bg.xml" value="0.3045" />
-        <entry key="..\:/AndroidStudioProjects/OnJuno/app/src/main/res/layout/activity_home.xml" value="0.21203703703703702" />
+        <entry key="..\:/AndroidStudioProjects/OnJuno/app/src/main/res/drawable/card_holder_bg.xml" value="0.3085" />
+        <entry key="..\:/AndroidStudioProjects/OnJuno/app/src/main/res/drawable/grey_border_bg.xml" value="0.3085" />
+        <entry key="..\:/AndroidStudioProjects/OnJuno/app/src/main/res/drawable/ic_baseline_enhanced_encryption_24.xml" value="0.217" />
+        <entry key="..\:/AndroidStudioProjects/OnJuno/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/OnJuno/app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidStudioProjects/OnJuno/app/src/main/res/layout/base_actionbar_collapsible.xml" value="0.25859375" />
+        <entry key="..\:/AndroidStudioProjects/OnJuno/app/src/main/res/layout/your_crypto_holding_cardholder.xml" value="0.34375" />
       </map>
     </option>
   </component>
