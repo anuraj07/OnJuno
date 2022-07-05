@@ -56,5 +56,40 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="1245" />
 
+        <TextView
+            android:id="@+id/deposit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_border_bg"
+            android:paddingStart="6dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="4dp"
+            android:text="@string/deposit"
+            android:textColor="@color/blue"
+            android:layout_marginEnd="12dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/buy"
+            app:layout_constraintEnd_toStartOf="@+id/buy"
+            app:layout_constraintTop_toTopOf="@+id/buy" />
+
+        <TextView
+            android:id="@+id/buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/blue_border_bg"
+            android:backgroundTint="@color/blue"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="4dp"
+            android:text="@string/buy"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

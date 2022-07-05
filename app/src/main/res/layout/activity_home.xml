@@ -19,6 +19,7 @@
                 android:layout_height="match_parent">
 
                 <RelativeLayout
+                    android:id="@+id/crypto_wallet"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/grey_border_bg"
@@ -54,9 +55,27 @@
                         android:textStyle="bold"
                         tools:text="1245" />
 
+                    <TextView
+                        android:id="@+id/deposit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="26dp"
+                        android:background="@drawable/blue_border_bg"
+                        android:paddingStart="6dp"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="6dp"
+                        android:paddingBottom="4dp"
+                        android:visibility="gone"
+                        android:text="@string/deposit"
+                        android:textColor="@color/blue"
+                        android:gravity="center_vertical"/>
+
                 </RelativeLayout>
 
                 <View
+                    android:id="@+id/view1"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:background="@color/light_grey"/>
@@ -84,11 +103,13 @@
                     android:nestedScrollingEnabled="false"/>
 
                 <View
+                    android:id="@+id/view2"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:background="@color/light_grey"/>
 
                 <LinearLayout
+                    android:id="@+id/recent_txn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -98,7 +119,7 @@
                         android:id="@+id/recent_trans"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/your_crypto_holdings"
+                        android:text="@string/recent_transactions"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:layout_weight="1"
@@ -108,7 +129,7 @@
                         android:id="@+id/view_all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="View all"
+                        android:text="@string/view_all"
                         android:gravity="end"
                         android:layout_weight="1"
                         android:textColor="@color/blue"
@@ -127,6 +148,7 @@
                     android:nestedScrollingEnabled="false"/>
 
                 <View
+                    android:id="@+id/view3"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="24dp"
@@ -136,7 +158,7 @@
                     android:id="@+id/curr_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/your_crypto_holdings"
+                    android:text="@string/current_prices"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -151,6 +173,13 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
                     android:nestedScrollingEnabled="false"/>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 

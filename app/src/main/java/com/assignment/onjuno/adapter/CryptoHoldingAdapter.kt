@@ -1,6 +1,7 @@
 package com.assignment.onjuno.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,12 @@ class CryptoHoldingAdapter(val activity: HomeActivity, val type: HomeActivity.TY
                 binding.balInToken.text = yourCryptoHolding.current_bal_in_token+" "+yourCryptoHolding.title
                 binding.coinName.text = yourCryptoHolding.title
                 binding.balInUsd.text = "$"+yourCryptoHolding.current_bal_in_usd
+                if (type == HomeActivity.TYPE.EMPTY_STATE) {
+                    binding.balInUsd.visibility = View.GONE
+                    binding.balInToken.visibility = View.GONE
+                    binding.deposit.visibility = View.VISIBLE
+                    binding.buy.visibility = View.VISIBLE
+                }
             }
 
     }
