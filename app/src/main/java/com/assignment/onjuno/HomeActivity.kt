@@ -6,7 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.assignment.onjuno.adapter.CryptoHoldingAdapter
+import com.assignment.onjuno.adapter.CurrentPriceAdapter
+import com.assignment.onjuno.adapter.RecentTransactionAdapter
 import com.assignment.onjuno.base.ViewBindingBaseActivity
+import com.assignment.onjuno.data.AllTransaction
+import com.assignment.onjuno.data.CryptoPrice
 import com.assignment.onjuno.data.YourCryptoHolding
 import com.assignment.onjuno.data.valueState
 import com.assignment.onjuno.databinding.ActivityHomeBinding
@@ -26,6 +30,8 @@ class HomeActivity : ViewBindingBaseActivity<ActivityHomeBinding>() {
     @Inject
     lateinit var homeViewModelFactory: HomeViewModelFactory
     private lateinit var cryptoHoldingAdapter: CryptoHoldingAdapter
+    private lateinit var recentTransactionAdapter: RecentTransactionAdapter
+    private lateinit var currPriceAdapter: CurrentPriceAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +40,17 @@ class HomeActivity : ViewBindingBaseActivity<ActivityHomeBinding>() {
 
         type = intent.getSerializableExtra(TYPE) as TYPE?
 
-        showToast(type.toString())
-
         if (type == HomeActivity.TYPE.EMPTY_STATE)
             observeEmptyState()
         else if (type == HomeActivity.TYPE.VALUE_STATE)
             observeValueState()
+        setClickListeners()
+    }
+
+    private fun setClickListeners() {
+        binding.viewAll.setOnClickListener {
+            showToast("Not Implemented")
+        }
     }
 
     private fun observeEmptyState() {
@@ -59,6 +70,8 @@ class HomeActivity : ViewBindingBaseActivity<ActivityHomeBinding>() {
         binding.cryptoAccSubtitle.text = valueState.crypto_balance?.subtitle
         binding.cryptoCurrBal.text = "$"+valueState.crypto_balance?.current_bal_in_usd
         setUpYourHoldingRecyclerView(valueState.your_crypto_holdings)
+        setUpRecentTxnRecyclerView(valueState.all_transactions)
+        setUpCurrPriceRecyclerView(valueState.crypto_prices)
 
     }
 
@@ -67,6 +80,20 @@ class HomeActivity : ViewBindingBaseActivity<ActivityHomeBinding>() {
         binding.yourHoldingRecyclerview.adapter = cryptoHoldingAdapter
         cryptoHoldingAdapter.setHoldingList(yourCryptoHoldings)
         binding.yourHoldingRecyclerview.adapter?.notifyDataSetChanged()
+    }
+
+    private fun setUpRecentTxnRecyclerView(allTransactions: ArrayList<AllTransaction?>?) {
+        recentTransactionAdapter = RecentTransactionAdapter(this, HomeActivity.TYPE.VALUE_STATE)
+        binding.recentTransRecyclerview.adapter = recentTransactionAdapter
+        recentTransactionAdapter.setTransactionList(allTransactions)
+        binding.recentTransRecyclerview.adapter?.notifyDataSetChanged()
+    }
+
+    private fun setUpCurrPriceRecyclerView(cryptoPrices: ArrayList<CryptoPrice?>?) {
+        currPriceAdapter = CurrentPriceAdapter(this, HomeActivity.TYPE.VALUE_STATE)
+        binding.currPriceRecyclerview.adapter = currPriceAdapter
+        currPriceAdapter.setCurrPriceList(cryptoPrices)
+        binding.currPriceRecyclerview.adapter?.notifyDataSetChanged()
     }
 
     companion object {

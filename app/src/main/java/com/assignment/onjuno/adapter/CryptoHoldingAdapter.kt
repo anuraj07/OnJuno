@@ -36,8 +36,6 @@ class CryptoHoldingAdapter(val activity: HomeActivity, val type: HomeActivity.TY
                 binding.balInToken.text = yourCryptoHolding.current_bal_in_token+" "+yourCryptoHolding.title
                 binding.coinName.text = yourCryptoHolding.title
                 binding.balInUsd.text = "$"+yourCryptoHolding.current_bal_in_usd
-
-
             }
 
     }

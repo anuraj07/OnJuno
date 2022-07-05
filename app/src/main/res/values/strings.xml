@@ -3,4 +3,5 @@
     <string name="value_state">Value State</string>
     <string name="empty_state">Empty State</string>
     <string name="your_crypto_holdings">Your Crypto Holdings</string>
+    <string name="buy">Buy</string>
 </resources>
