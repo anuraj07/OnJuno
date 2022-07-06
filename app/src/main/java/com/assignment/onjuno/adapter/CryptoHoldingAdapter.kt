@@ -9,6 +9,7 @@ import com.assignment.onjuno.HomeActivity
 import com.assignment.onjuno.R
 import com.assignment.onjuno.data.YourCryptoHolding
 import com.assignment.onjuno.databinding.YourCryptoHoldingCardholderBinding
+import com.assignment.onjuno.utils.LoadSvg
 
 class CryptoHoldingAdapter(val activity: HomeActivity, val type: HomeActivity.TYPE)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -37,6 +38,7 @@ class CryptoHoldingAdapter(val activity: HomeActivity, val type: HomeActivity.TY
                 binding.balInToken.text = yourCryptoHolding.current_bal_in_token+" "+yourCryptoHolding.title
                 binding.coinName.text = yourCryptoHolding.title
                 binding.balInUsd.text = "$"+yourCryptoHolding.current_bal_in_usd
+                LoadSvg().fetchSvg(activity, yourCryptoHolding.logo, binding.coinIcon)
                 if (type == HomeActivity.TYPE.EMPTY_STATE) {
                     binding.balInUsd.visibility = View.GONE
                     binding.balInToken.visibility = View.GONE

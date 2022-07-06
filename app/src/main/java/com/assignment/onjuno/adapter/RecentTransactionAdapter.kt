@@ -8,6 +8,7 @@ import com.assignment.onjuno.HomeActivity
 import com.assignment.onjuno.R
 import com.assignment.onjuno.data.AllTransaction
 import com.assignment.onjuno.databinding.RecentTtransactionCardHolderBinding
+import com.assignment.onjuno.utils.LoadSvg
 
 class RecentTransactionAdapter(val activity: HomeActivity, val type: HomeActivity.TYPE)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -35,6 +36,7 @@ class RecentTransactionAdapter(val activity: HomeActivity, val type: HomeActivit
                 binding.txnName.text = transaction.title
                 binding.txnTime.text = transaction.txn_time
                 binding.txnAmt.text = "$"+transaction.txn_amount
+                LoadSvg().fetchSvg(activity, transaction.txn_logo, binding.txnIcon)
             }
         }
 }

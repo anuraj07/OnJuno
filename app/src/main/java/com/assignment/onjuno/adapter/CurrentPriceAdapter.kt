@@ -8,6 +8,7 @@ import com.assignment.onjuno.HomeActivity
 import com.assignment.onjuno.R
 import com.assignment.onjuno.data.CryptoPrice
 import com.assignment.onjuno.databinding.CurrentPriceCardHolderBinding
+import com.assignment.onjuno.utils.LoadSvg
 
 class CurrentPriceAdapter(val activity: HomeActivity, val type: HomeActivity.TYPE)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -34,6 +35,7 @@ class CurrentPriceAdapter(val activity: HomeActivity, val type: HomeActivity.TYP
             fun bind(cryptoPrice: CryptoPrice) {
                 binding.coinName.text = cryptoPrice.title
                 binding.coinPrice.text = "$"+cryptoPrice.current_price_in_usd
+                LoadSvg().fetchSvg(activity, cryptoPrice.logo, binding.coinIcon)
             }
         }
 }
