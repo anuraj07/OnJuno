@@ -9,14 +9,20 @@ import com.assignment.onjuno.HomeActivity
 import com.assignment.onjuno.R
 import com.assignment.onjuno.data.YourCryptoHolding
 import com.assignment.onjuno.databinding.YourCryptoHoldingCardholderBinding
+import com.assignment.onjuno.listener.YourHoldingsCallbacks
 import com.assignment.onjuno.utils.LoadSvg
 
 class CryptoHoldingAdapter(val activity: HomeActivity, val type: HomeActivity.TYPE)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var holdingList: ArrayList<YourCryptoHolding?>? = ArrayList()
+    private var yourHoldingsCallbacks: YourHoldingsCallbacks? = null
 
     fun setHoldingList(yourCryptoHolding: ArrayList<YourCryptoHolding?>?) {
         this.holdingList = yourCryptoHolding
+    }
+
+    fun setListener(yourHoldingsCallbacks: YourHoldingsCallbacks) {
+        this.yourHoldingsCallbacks = yourHoldingsCallbacks
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -44,6 +50,9 @@ class CryptoHoldingAdapter(val activity: HomeActivity, val type: HomeActivity.TY
                     binding.balInToken.visibility = View.GONE
                     binding.deposit.visibility = View.VISIBLE
                     binding.buy.visibility = View.VISIBLE
+                }
+                binding.buy.setOnClickListener {
+                    yourHoldingsCallbacks?.onBuyClicked(yourCryptoHolding, adapterPosition)
                 }
             }
 

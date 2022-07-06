@@ -17,6 +17,9 @@ class RecentTransactionAdapter(val activity: HomeActivity, val type: HomeActivit
     fun setTransactionList(transactionList: ArrayList<AllTransaction?>?) {
         this.allTransactionList = transactionList
     }
+    fun getAllTxnList(): ArrayList<AllTransaction?>? {
+        return allTransactionList
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return TxnHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context),
         R.layout.recent_ttransaction_card_holder, parent, false))

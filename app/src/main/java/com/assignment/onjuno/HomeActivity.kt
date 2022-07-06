@@ -11,11 +11,12 @@ import com.assignment.onjuno.adapter.RecentTransactionAdapter
 import com.assignment.onjuno.base.ViewBindingBaseActivity
 import com.assignment.onjuno.data.*
 import com.assignment.onjuno.databinding.ActivityHomeBinding
+import com.assignment.onjuno.listener.YourHoldingsCallbacks
 import com.assignment.onjuno.viewmodels.HomeViewModel
 import com.assignment.onjuno.viewmodels.HomeViewModelFactory
 import javax.inject.Inject
 
-class HomeActivity : ViewBindingBaseActivity<ActivityHomeBinding>() {
+class HomeActivity : ViewBindingBaseActivity<ActivityHomeBinding>(), YourHoldingsCallbacks {
 
     override val layoutId: Int
         get() = R.layout.activity_home
@@ -90,6 +91,7 @@ class HomeActivity : ViewBindingBaseActivity<ActivityHomeBinding>() {
 
     private fun setUpYourHoldingRecyclerView(type: TYPE, yourCryptoHoldings: ArrayList<YourCryptoHolding?>?) {
         cryptoHoldingAdapter = CryptoHoldingAdapter(this, type)
+        cryptoHoldingAdapter.setListener(this)
         binding.yourHoldingRecyclerview.adapter = cryptoHoldingAdapter
         cryptoHoldingAdapter.setHoldingList(yourCryptoHoldings)
         binding.yourHoldingRecyclerview.adapter?.notifyDataSetChanged()
@@ -129,5 +131,14 @@ class HomeActivity : ViewBindingBaseActivity<ActivityHomeBinding>() {
             intent.putExtra(TYPE, type)
             context.startActivity(intent)
         }
+    }
+
+    override fun onBuyClicked(yourCryptoHolding: YourCryptoHolding, position: Int) {
+        val txn = AllTransaction(yourCryptoHolding.title+" Bought",
+            "24.05", yourCryptoHolding.logo, "", "few second ago")
+        val list = recentTransactionAdapter.getAllTxnList()
+        list?.add(txn)
+        recentTransactionAdapter.setTransactionList(list)
+        recentTransactionAdapter.notifyDataSetChanged()
     }
 }
